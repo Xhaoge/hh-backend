@@ -1,0 +1,12 @@
+url: 'www.baidu.com'
+logAddr: "E:\\Logging\\HH"
+port: 21780
+platformName: "Android\u54C8\u54C8\u54C8"
+
+#配置数据库信息；
+mysqlDB:
+        user: root
+        pwd: 123456
+        host: 127.0,0,1
+        port: 3306
+        dbname: myhouse
