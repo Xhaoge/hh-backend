@@ -2,7 +2,7 @@
 
 import json
 from flask import Flask, render_template, request
-from flask_sqlalchemy import SQLAlchemy
+
 from modules.model import User
 
 
@@ -14,12 +14,13 @@ app.config['SQLALCHEMY_DATABASE_URI']='mysql://root:123456@localhost:3306/hh'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS']=True 
 
 # 用于连接数据库，得到SQLAlchemy对象
-db = SQLAlchemy(app, use_native_unicode='utf8')
+
 
 @app.route('/')
 
 def index():
     user = User()
+    print(user)
     dict1 = {1:"hello"}
     print("dict1 type:",type(dict1))
     json1 = json.dumps(dict1, ensure_ascii=False)

@@ -1,8 +1,9 @@
 # !/usr/bin/env python
 # -*- coding:utf-8 -*-  
 
-from .. import db
+from flask_sqlalchemy import SQLAlchemy
 
+db = SQLAlchemy()
 
 # 创建user model
 class User(db.Model):
