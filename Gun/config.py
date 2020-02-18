@@ -2,10 +2,10 @@
 DIALECT = 'mysql'
 DRIVER = 'pymysql'
 USERNAME = 'root'
-PASSWORD = 'root'
+PASSWORD = '123456'
 HOST = '127.0.0.1'
 PORT = '3306'
-DATABASE = 'flasktest'
+DATABASE = 'hh'
 
 SQLALCHEMY_DATABASE_URI = '{}+{}://{}:{}@{}:{}/{}'.format(
     DIALECT,
