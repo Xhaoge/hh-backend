@@ -1,2 +1,5 @@
 python 使用flask 获取post请求：
     https://www.jianshu.com/p/6b3f70a8adda?tdsourcetag=s_pcqq_aiomsg
+
+python的flask框架连接mysql数据库
+    https://blog.csdn.net/u011067966/article/details/53896478
