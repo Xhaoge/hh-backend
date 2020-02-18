@@ -1,0 +1,2 @@
+python 使用flask 获取post请求：
+    https://www.jianshu.com/p/6b3f70a8adda?tdsourcetag=s_pcqq_aiomsg

@@ -1,7 +1,7 @@
 # !/usr/bin/env python
 # -*- coding:utf-8 -*-  
 
-class Utils:
+class Model:
 
     def __init__(self):
-        print("this is utils __init__")
+        print("this is Model __init__")
