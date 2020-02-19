@@ -32,12 +32,12 @@ def addUser(user):
     db.session.add(user)
     db.session.commit()
 
-def delUser(id):
-    del = db.query.get(id)
-    if del == None:
-        return
-    db.session.delete(del)
-    db.session.commit()
+# def delUser(id):
+#     dele = db.query.get(id)
+#     if dele == None:
+#         return
+#     db.session.delete(del)
+#     db.session.commit()
 
 def updateUser():
     pass

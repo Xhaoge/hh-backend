@@ -2,12 +2,14 @@
 # -*- coding: UTF-8 -*-
 # from flask import Flask,render_template,jsonify,request,g, url_for,abort
 from .models import *
-from .search import search_info
+from .rooms import rooms_mod
+from .login import login_mod
 # from .user_info import user_info
 
 # extensions
 
-app.register_blueprint(search_info)
+app.register_blueprint(rooms_mod)
+app.register_blueprint(login_mod)
 
 
 # @auth.verify_password

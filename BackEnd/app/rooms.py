@@ -4,16 +4,16 @@ from flask import Blueprint, request
 # from . import db
 from .models import getUsers
 
-search_info = Blueprint('search',__name__)
+rooms_mod = Blueprint('rooms',__name__)
 
-@search_info.route("/search_get", methods=["GET"])
+@rooms_mod.route("/get_rooms", methods=["GET"])
 def index():
     dict1 = {1:"hello,hh"}
     json1 = json.dumps(dict1, ensure_ascii=False)
     return json1
 
 
-@search_info.route("/search_post", methods=["POST"])
+@rooms_mod.route("/post_rooms", methods=["POST"])
 def search_hello():
     rr = getUsers()
     print(rr)
