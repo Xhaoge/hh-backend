@@ -4,6 +4,7 @@
 pip install flask
 pip install flask-sqlalchemy
 pip install mysql-python
+pip install pymysql
 
 
 ## 运行  
