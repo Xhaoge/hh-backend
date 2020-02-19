@@ -44,7 +44,7 @@ def updateUser():
 
 
 class Room(db.Model):
-    """用户"""
+    """房源"""
     __tablename__ = 'rooms'
     __table_args__ = {'mysql_engine': 'InnoDB'}  # 支持事务操作和外键
     id = db.Column(db.Integer, primary_key=True)
@@ -60,7 +60,7 @@ class Room(db.Model):
     area = db.Column(db.Float, doc='房间面积', nullable=False)
     floor = db.Column(db.Integer, doc='楼层', nullable=False)
     plot = db.Column(db.String(255), doc='小区名字', nullable=False)
-    picList = db.Column(db.LargeBinary, doc='图片列表', nullable=False)
+    picId = db.Column(db.String(128), doc='图片关联id', nullable=False)
     supporting = db.Column(db.String(255), doc='配套设施', nullable=False)
     contactPhone = db.Column(db.Integer, doc='联系电话', nullable=False)
     contactWx = db.Column(db.String(255), doc='联系微信', nullable=False)
@@ -69,3 +69,12 @@ class Room(db.Model):
 
     def __repr__(self):
         return '<Room %r>' % self.title
+
+class Picture(db.Model):
+    """图片"""
+    __tablename__ = 'pictures'
+    __table_args__ = {'mysql_engine': 'InnoDB'}  # 支持事务操作和外键
+    id = db.Column(db.Integer, primary_key=True)
+    picId = db.Column(db.String(128), doc='图片关联id', nullable=False)
+    picList = db.Column(db.LargeBinary, doc='图片详情', nullable=False)
+
