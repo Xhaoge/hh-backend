@@ -2,7 +2,7 @@
 import json
 from flask import Blueprint, request
 # from . import db
-# from .models import User
+from .models import getUsers
 
 search_info = Blueprint('search',__name__)
 
@@ -15,6 +15,8 @@ def index():
 
 @search_info.route("/search_post", methods=["POST"])
 def search_hello():
+    rr = getUsers()
+    print(rr)
     param = request.json
     print(type(param))
     print("username: ",param["username"])

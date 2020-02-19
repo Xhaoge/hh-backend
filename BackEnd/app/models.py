@@ -17,13 +17,33 @@ class User(db.Model):
     userRestrict = db.Column(db.String(32), doc='用户权限', nullable=True)
     contain = db.Column(db.String(128), doc='现租的房子', nullable=True)
     description = db.Column(db.String(50), doc='说明', default='这个人很懒，什么也没留下', nullable=False)
+
+
+    def __repr__(self):
+        return '<User %r>' % self.username  
     
+def getUsers():
+    user_list = User.query.order_by(User.id).all()
+    return user_list
+
+
+def addUser():
+    pass
+
+def delUser():
+    pass
+
+def updateUser():
+    pass
+
+
 
 class Room(db.Model):
     """用户"""
     __tablename__ = 'rooms'
     __table_args__ = {'mysql_engine': 'InnoDB'}  # 支持事务操作和外键
     id = db.Column(db.Integer, primary_key=True)
+    status = db.Column(db.String(128), doc='房源状态', nullable=False)
     title = db.Column(db.String(255), doc='标题', nullable=False)
     position = db.Column(db.String(255), doc='位置', nullable=False)
     roomType = db.Column(db.String(128), doc='住房类型', nullable=False)
@@ -42,3 +62,5 @@ class Room(db.Model):
     description = db.Column(db.String(255), doc='说明', default='这个人很懒，什么也没留下')
     
 
+    def __repr__(self):
+        return '<Room %r>' % self.title
