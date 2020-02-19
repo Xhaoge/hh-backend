@@ -27,15 +27,20 @@ def getUsers():
     return user_list
 
 
-def addUser():
-    pass
+def addUser(user):
+    # 传入一个User对象
+    db.session.add(user)
+    db.session.commit()
 
-def delUser():
-    pass
+def delUser(id):
+    del = db.query.get(id)
+    if del == None:
+        return
+    db.session.delete(del)
+    db.session.commit()
 
 def updateUser():
     pass
-
 
 
 class Room(db.Model):
