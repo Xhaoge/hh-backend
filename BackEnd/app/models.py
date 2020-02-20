@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from . import app
-from . import db
+from BackEnd.app import app
+from BackEnd.app import db
 
 
 class User(db.Model):
