@@ -21,7 +21,8 @@ class User(db.Model):
 
     def __repr__(self):
         return '<User %r>' % self.username  
-    
+
+ # 获取所有的Users   
 def getUsers():
     user_list = User.query.order_by(User.id).all()
     return user_list
