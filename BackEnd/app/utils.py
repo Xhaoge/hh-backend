@@ -12,8 +12,6 @@ def getRandomStr(num):
     lettera = ['q','w','e','r','t','y','u','i','o','p','a','s','d','f','g','h','j','k','l','z','x','c','v','b','n','m']
     all = number + letterA + lettera
     rr = random.sample(all,num)
-    result = ''
-    for i in rr:
-        result = result + i
+    result = "".join(rr)
     print("获取到的str：",result, type(result)) 
     return result
