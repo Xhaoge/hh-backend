@@ -4,10 +4,12 @@
 from .models import *
 from .rooms import rooms_mod
 from .login import login_mod
+from .pictures import pic_handle
 
 # 注册蓝图
 app.register_blueprint(rooms_mod)
 app.register_blueprint(login_mod)
+app.register_blueprint(pic_handle)
 
 @app.route('/test', methods=['GET', 'POST'])
 def test():
