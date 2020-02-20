@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 from flask import Blueprint, request
-from BackEnd.app import db
-from BackEnd.app.models import getUsers,User
-from BackEnd.app import app
+from app import db
+from app.models import getUsers,User
+from app import app
 import requests, json
 login_mod = Blueprint('login',__name__)
 

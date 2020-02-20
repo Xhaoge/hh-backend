@@ -1,4 +1,4 @@
-
+# 配置mysql
 DIALECT = 'mysql'
 DRIVER = 'pymysql'
 USERNAME = 'root'
@@ -21,3 +21,9 @@ SQLALCHEMY_DATABASE_URI = '{}+{}://{}:{}@{}:{}/{}'.format(
 TEMPLATES_AUTO_RELOAD = True
 SEND_FILE_MAX_AGE_DEFAULT = 0
 SQLALCHEMY_TRACK_MODIFICATIONS = True
+DEBUG = True
+PORT = 8080
+
+
+# 配置图片存放地址
+PICS_STORAGE_ADDRESS = r'E:/program/static/hh/photos'

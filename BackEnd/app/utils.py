@@ -2,10 +2,17 @@
 
 import random
 
+# 申明全局变量响应码
+
+RETURN_200 = {"code":200, "status":"success"}
+
+
 def hello():
     return "hello"
 
 
+
+# 随机组合一个str返回；
 def getRandomStr(num):
     number = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
     letterA = ['A','Q','W','E','R','T','Y','U','I','O','P','S','D','F','G','H','J','K','L','Z','X','C','V','B','N','M']
@@ -13,5 +20,4 @@ def getRandomStr(num):
     makeAll = number + letterA + lettera
     rr = random.sample(makeAll,num)
     resultStr = "".join(rr)
-    print("获取到的str：",resultStr, type(resultStr)) 
     return resultStr

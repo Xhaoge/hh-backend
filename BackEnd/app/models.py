@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from BackEnd.app import app
-from BackEnd.app import db
+from app import app
+from app import db
 
 
 class User(db.Model):
@@ -51,6 +51,7 @@ class Room(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     status = db.Column(db.String(128), doc='房源状态', nullable=False)
     title = db.Column(db.String(255), doc='标题', nullable=False)
+    picId = db.Column(db.String(225), doc='图片list', nullable=False)
     position = db.Column(db.String(255), doc='位置', nullable=False)
     roomType = db.Column(db.String(128), doc='住房类型', nullable=False)
     isElevator = db.Column(db.Boolean, doc='是否有电梯', default=False)
@@ -61,7 +62,6 @@ class Room(db.Model):
     area = db.Column(db.Float, doc='房间面积', nullable=False)
     floor = db.Column(db.Integer, doc='楼层', nullable=False)
     plot = db.Column(db.String(255), doc='小区名字', nullable=False)
-    picId = db.Column(db.String(128), doc='图片关联id', nullable=False)
     supporting = db.Column(db.String(255), doc='配套设施', nullable=False)
     contactPhone = db.Column(db.Integer, doc='联系电话', nullable=False)
     contactWx = db.Column(db.String(255), doc='联系微信', nullable=False)
@@ -71,11 +71,11 @@ class Room(db.Model):
     def __repr__(self):
         return '<Room %r>' % self.title
 
-class Picture(db.Model):
-    """图片"""
-    __tablename__ = 'pictures'
-    __table_args__ = {'mysql_engine': 'InnoDB'}  # 支持事务操作和外键
-    id = db.Column(db.Integer, primary_key=True)
-    picId = db.Column(db.String(128), doc='图片关联id', nullable=False)
-    picList = db.Column(db.LargeBinary, doc='图片详情', nullable=False)
+# class Picture(db.Model):
+#     """图片"""
+#     __tablename__ = 'pictures'
+#     __table_args__ = {'mysql_engine': 'InnoDB'}  # 支持事务操作和外键
+#     id = db.Column(db.Integer, primary_key=True)
+#     picId = db.Column(db.String(128), doc='图片关联id', nullable=False)
+#     picList = db.Column(db.LargeBinary, doc='图片详情', nullable=False)
 
