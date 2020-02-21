@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: UTF-8 -*-
 # from flask import Flask,render_template,jsonify,request,g, url_for,abort
-from .models import *
+from .userModel import *
 from .rooms import rooms_mod
 from .login import login_mod
 from .pictures import pic_handle

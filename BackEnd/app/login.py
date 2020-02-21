@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from flask import Blueprint, request
 from app import db
-from app.models import getUsers,User
+from app.userModel import getUsers,User
 from app import app
 import requests, json
 login_mod = Blueprint('login',__name__)

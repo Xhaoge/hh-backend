@@ -2,7 +2,7 @@
 import json
 from flask import Blueprint, request
 # from . import db
-from .models import getUsers
+from .userModel import getUsers
 
 rooms_mod = Blueprint('rooms',__name__)
 

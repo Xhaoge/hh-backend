@@ -9,4 +9,4 @@ from flask_sqlalchemy import SQLAlchemy
 app = Flask(__name__)
 app.config.from_object('config')
 db = SQLAlchemy(app, use_native_unicode='utf8')
-from . import models,views
+from . import userModel, roomModel, views
