@@ -27,12 +27,19 @@ def getUsers():
     user_list = User.query.order_by(User.id).all()
     return user_list
 
-# 通过用户唯一的openId 来查找某位用户
+# 通过用户唯一的Id 来查找某位用户信息
 def getUserById(uid):
     user =  User.query.filter_by(id='%s').first() % uid
     if not user:
         return 404
     return user
+
+# 通过用户唯一的openId 来查找确定用户是否存在
+def getUserById(pid):
+    user =  User.query.filter_by(openId='%s').first() % pid
+    if not user.id:
+        return False
+    return True
 
 # 往数据库里插入一条记录
 def addUser(user):
