@@ -2,14 +2,18 @@
 
 import random
 
-# 申明全局变量响应码
-
-RETURN_200 = {"code":200, "status":"success"}
-
-
-def hello():
-    return "hello"
-
+# 申明基本全局响应码
+def getResponseReturn(code):
+    if code == 200:
+        return {"code":200, "msg":"Success", "data":{}}
+    elif code == 202:
+        return {"code":202, "msg":"Request Param Error", "data":{}}
+    elif code == 404:
+        return {"code":404, "msg":"Not Found", "data":{}}
+    elif code == 500:
+        return {"code":500, "msg":"Intenal Serve Error", "data":{}}
+    else:
+        return {"code":666, "msg":"Big Trouble", "data":{}}
 
 
 # 随机组合一个str返回；

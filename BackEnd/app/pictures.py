@@ -20,8 +20,8 @@ def pic_add():
     traceId = getRandomStr(4) + "-" + getRandomStr(4) + ".jpg"
     if file_add:
         # 地址拼接
-        # if not os.path.exists(file_path):
-        #     os.makedirs(file_path)
+        if not os.path.exists(file_path):
+            os.makedirs(file_path)
         file_paths = os.path.join(file_path, traceId)
         print("file_paths: ",file_paths)
         # 保存接收的图片到桌面
