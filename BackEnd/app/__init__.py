@@ -1,6 +1,7 @@
 
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+import mysql.connector
 
 # import json
 # from datetime import datetime

@@ -1,6 +1,8 @@
 # 公共函数定义
 
 import random
+from .roomModel import Room
+# from datetime import datetime
 
 # 申明基本全局响应码
 def getResponseReturn(code):
@@ -25,3 +27,30 @@ def getRandomStr(num):
     rr = random.sample(makeAll,num)
     resultStr = "".join(rr)
     return resultStr
+
+
+def roomAddParamHandle(d):
+    roomNew = Room()
+    try:
+        roomNew.title = d["title"]
+        roomNew.creatorId = d["creatorId"]
+        roomNew.picIdList = str(d["picIdList"])
+        print(type(d),type(d["picIdList"]))
+        roomNew.position = str(d["position"])
+        roomNew.address = d["address"]
+        roomNew.roomType = str(d["roomType"])
+        # roomNew.isElevator = d["isElevator"]
+        roomNew.price = d["price"]
+        roomNew.nearSubway = d["nearSubway"]
+        roomNew.payType = d["payType"]
+        roomNew.area = d["area"]
+        # roomNew.releaseTime = datetime.date
+        roomNew.floor = d["floor"]
+        roomNew.plot = d["plot"]
+        roomNew.supporting = str(d["supporting"])
+        roomNew.contactPhone = d["contactPhone"]
+        roomNew.contactWx = d["contactWx"]
+        roomNew.description = d["description"]
+    except Exception as e:
+        return e
+    return roomNew

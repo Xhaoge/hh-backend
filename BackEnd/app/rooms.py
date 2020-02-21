@@ -3,17 +3,21 @@ import json
 from flask import Blueprint, request
 # from . import db
 from .userModel import getUsers
+from .roomModel import Room, addRoom
+from .utils import roomAddParamHandle,getResponseReturn
 
 rooms_mod = Blueprint('rooms',__name__)
 
 @rooms_mod.route("/hh/room_add", methods=["POST"])
 def rooms_add():
-
     param = request.json
-    print(type(param))
-    print("username: ",param["username"])
-    hh = "search for yourself " + param["username"]
-    return hh
+    newRoom = roomAddParamHandle(param)
+    if not isinstance(newRoom, Room):
+        return getResponseReturn(202)
+    res = addRoom(newRoom)
+    if res != "success":
+        return "fail"
+    return "success"
 
 
 @rooms_mod.route("/hh/room_get", methods=["GET"])
