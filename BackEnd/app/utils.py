@@ -5,15 +5,15 @@ import random
 # 申明基本全局响应码
 def getResponseReturn(code):
     if code == 200:
-        return {"code":200, "msg":"Success", "data":{}}
+        return {"code":200, "msg":"Success"}
     elif code == 202:
-        return {"code":202, "msg":"Request Param Error", "data":{}}
+        return {"code":202, "msg":"Request Param Error"}
     elif code == 404:
-        return {"code":404, "msg":"Not Found", "data":{}}
+        return {"code":404, "msg":"Not Found"}
     elif code == 500:
-        return {"code":500, "msg":"Intenal Serve Error", "data":{}}
+        return {"code":500, "msg":"Intenal Serve Error"}
     else:
-        return {"code":666, "msg":"Big Trouble", "data":{}}
+        return {"code":666, "msg":"Big Trouble"}
 
 
 # 随机组合一个str返回；

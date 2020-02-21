@@ -43,7 +43,3 @@ def log_in():
             db.session.commit()
             return json.dumps(user_info.UserID, ensure_ascii=False)
     return json.dump(resp)
-
-# if __name__== "__main__":)
-#     app.run(port = 80,debug=True)
-    # login.run(host = '0.0.0.0', port = 80

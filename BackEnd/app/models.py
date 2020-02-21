@@ -69,10 +69,12 @@ class Room(db.Model):
     __tablename__ = 'rooms'
     __table_args__ = {'mysql_engine': 'InnoDB'}  # 支持事务操作和外键
     id = db.Column(db.Integer, primary_key=True)
+    creator = db.Column(db.Integer, doc='创建者房源id', nullable=False)
     status = db.Column(db.String(128), doc='房源状态', nullable=True)
     title = db.Column(db.String(255), doc='标题', nullable=False)
     picId = db.Column(db.String(225), doc='图片list', nullable=False)
     position = db.Column(db.String(255), doc='位置', nullable=False)
+    address = db.Column(db.String(255), doc='房源地址', nullable=False)
     roomType = db.Column(db.String(128), doc='住房类型', nullable=False)
     isElevator = db.Column(db.Boolean, doc='是否有电梯', default=False)
     price = db.Column(db.Integer, doc='价格', nullable=False, default=1000)
