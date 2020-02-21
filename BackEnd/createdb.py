@@ -1,5 +1,5 @@
-from app import db
-from app.models import *
+from BackEnd.app import db
+from BackEnd.app.models import *
 
 
 if __name__ == '__main__':

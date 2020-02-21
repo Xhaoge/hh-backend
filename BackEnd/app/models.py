@@ -9,14 +9,14 @@ class User(db.Model):
     __tablename__ = 'users'
     __table_args__ = {'mysql_engine': 'InnoDB'}  # 支持事务操作和外键
     id = db.Column(db.Integer, primary_key=True)
-    oppenId = db.Column(db.Integer, doc='微信账号唯一标识', nullable=True)
-    username = db.Column(db.String(128), doc='用户名', nullable=False)
-    password = db.Column(db.String(128), doc='密码', nullable=False)
-    phone = db.Column(db.String(20), doc='手机号码', nullable=False, unique=True)
-    isAdmin = db.Column(db.Boolean, doc='是否管理员', default=False)
+    openId = db.Column(db.String(128), doc='微信账号唯一标识', nullable=False)
+    username = db.Column(db.String(128), doc='用户名', nullable=True)
+    password = db.Column(db.String(128), doc='密码', nullable=True)
+    phone = db.Column(db.String(20), doc='手机号码', nullable=True, unique=True)
+    isAdmin = db.Column(db.Boolean, doc='是否管理员', default=True)
     userRestrict = db.Column(db.String(32), doc='用户权限', nullable=True)
     contain = db.Column(db.String(128), doc='现租的房子', nullable=True)
-    description = db.Column(db.String(50), doc='说明', default='这个人很懒，什么也没留下', nullable=False)
+    description = db.Column(db.String(50), doc='说明', default='这个人很懒，什么也没留下', nullable=True)
 
 
     def __repr__(self):

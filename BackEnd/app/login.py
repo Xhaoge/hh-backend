@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
+import json
 from flask import Blueprint, request
 from BackEnd.app import db
-from BackEnd.app.models import getUsers,User
+from BackEnd.app.models import getUsers,User,addUser
 from BackEnd.app import app
 import requests, json
 login_mod = Blueprint('login',__name__)
@@ -9,14 +10,15 @@ login_mod = Blueprint('login',__name__)
 @login_mod.route('/login',methods = ["GET","POST"])
 def log_in():
     resp = {"code":200,"msg":"操作成功", "data":{}}
-    data = json.loads(request.get_data().decode('utf-8')) #将前端Json数据转为字典
+    # data = json.loads(request.get_data().decode('utf-8')) #将前端Json数据转为字典
+    data={"code":"043A4y6w0LoGYc1eIQ6w0TBN6w0A4y6C"}
     appID = 'wxd20112c596493f06'
     appSecret = 'c156da5ff391cd48fb76c90f99150c24'
     # code = '023gTHKO1Xhcg71tKsJO1s4PKO1gTHKH'
     code = data['code'] if "code" in data else ""
     if not code or len(code) < 1 :
-        resp["code"] = -1
-        resp["msg"]="需要code"
+        resp["code"] = 10002
+        resp["msg"]="code失效或没有code"
         return json.dump(resp)
     req_params = {
         'appid': appID,
@@ -37,11 +39,14 @@ def log_in():
         SQLalchemy语句：
         user_info = User.query.filter(User.OpenID == openid).first() 
         '''
-        if getUsers() is None:
+        if openid not in getUsers():
+            print(1111)
+        # if getUsers() is None:
             user_info = User(openId=openid)
-            db.session.add(user_info)
-            db.session.commit()
-            return json.dumps(user_info.UserID, ensure_ascii=False)
+            addUser(user_info)
+            resp["code"]=200
+            resp["msg"]="添加openID成功"
+            return json.dumps(resp,ensure_ascii=False)
     return json.dump(resp)
 
 # if __name__== "__main__":)
