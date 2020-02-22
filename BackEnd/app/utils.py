@@ -7,15 +7,21 @@ from .roomModel import Room
 # 申明基本全局响应码
 def getResponseReturn(code):
     if code == 200:
-        return {"code":200, "msg":"Success"}
+        return {"code":code, "msg":"Success"}
     elif code == 202:
-        return {"code":202, "msg":"Request Param Error"}
+        return {"code":code, "msg":"Request Param Error"}
     elif code == 404:
-        return {"code":404, "msg":"Not Found"}
+        return {"code":code, "msg":"Not Found"}
     elif code == 500:
-        return {"code":500, "msg":"Intenal Serve Error"}
+        return {"code":code, "msg":"Intenal Serve Error"}
+    elif code == 1026:
+        return {"code":code, "msg":"insert records Error"}
+    elif code == 1012 :
+        return {"code":code, "msg":"read records Error"}
+    elif code == 1011 :
+        return {"code":code, "msg":"delete records Error"}
     else:
-        return {"code":666, "msg":"Big Trouble"}
+        return {"code":code, "msg":"Big Trouble"}
 
 
 # 随机组合一个str返回；
@@ -39,7 +45,7 @@ def roomAddParamHandle(d):
         roomNew.position = str(d["position"])
         roomNew.address = d["address"]
         roomNew.roomType = str(d["roomType"])
-        # roomNew.isElevator = d["isElevator"]
+        roomNew.isElevator = True
         roomNew.price = d["price"]
         roomNew.nearSubway = d["nearSubway"]
         roomNew.payType = d["payType"]

@@ -14,10 +14,14 @@ def rooms_add():
     newRoom = roomAddParamHandle(param)
     if not isinstance(newRoom, Room):
         return getResponseReturn(202)
-    res = addRoom(newRoom)
-    if res != "success":
-        return "fail"
-    return "success"
+    respAddRoomId = addRoom(newRoom)
+    if not isinstance(respAddRoomId, int):
+        return getResponseReturn(1026)
+    data = {"roomId":respAddRoomId}
+    res = getResponseReturn(200)
+    res["msg"] = "房源创建成功"
+    res["data"] = data
+    return res
 
 
 @rooms_mod.route("/hh/room_get", methods=["GET"])
