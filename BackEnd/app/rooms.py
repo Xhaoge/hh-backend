@@ -1,13 +1,25 @@
 # -*- coding: utf-8 -*-
+import time
 import json
 from flask import Blueprint, request
 # from . import db
-from .userModel import getUsers
-from .roomModel import Room, addRoom
-from .utils import roomAddParamHandle,getResponseReturn
+from .roomModel import *
+from .utils import getResponseReturn,makeResponseScheme
 
 rooms_mod = Blueprint('rooms',__name__)
 
+# 查询所有房源
+@rooms_mod.route("/hh/room_index")
+def rooms_index():
+    roomAll = getRoomList()
+    print("roomAll:",roomAll)
+    print(type(roomAll))
+    if len(roomAll) == 0 or not isinstance(roomAll,list):
+        return getResponseReturn(0)
+    res = makeResponseScheme(resStatus=200, msg="读取所有房源成功",data=roomAll)
+    return res
+
+# 添加一个房源
 @rooms_mod.route("/hh/room_add", methods=["POST"])
 def rooms_add():
     param = request.json
@@ -17,33 +29,68 @@ def rooms_add():
     respAddRoomId = addRoom(newRoom)
     if not isinstance(respAddRoomId, int):
         return getResponseReturn(1026)
-    data = {"roomId":respAddRoomId}
-    res = getResponseReturn(200)
-    res["msg"] = "房源创建成功"
-    res["data"] = data
+    res = makeResponseScheme(resStatus=200, msg="房源创建成功",data={"roomId":respAddRoomId})
+    return res
+    
+def roomAddParamHandle(d):
+    roomNew = Room()
+    try:
+        roomNew.title = d["title"]
+        roomNew.creatorId = d["creatorId"]
+        roomNew.picIdList = str(d["picIdList"])
+        roomNew.position = str(d["position"])
+        roomNew.address = d["address"]
+        roomNew.roomType = str(d["roomType"])
+        roomNew.isElevator = True
+        roomNew.price = d["price"]
+        roomNew.nearSubway = d["nearSubway"]
+        roomNew.payType = d["payType"]
+        roomNew.area = d["area"]
+        roomNew.releaseTime = str(time.strftime('%Y-%m-%d %H:%M:%S'))
+        roomNew.floor = d["floor"]
+        roomNew.plot = d["plot"]
+        roomNew.supporting = str(d["supporting"])
+        roomNew.contactPhone = d["contactPhone"]
+        roomNew.contactWx = d["contactWx"]
+        roomNew.description = d["description"]
+    except Exception as e:
+        return e
+    return roomNew
+
+
+# 查看某一房源具体信息
+@rooms_mod.route("/hh/room_get", methods=["POST"])
+def rooms_get():
+    param = request.json
+    roomId = param["roomId"]
+    roomDict = getRoomById(roomId)
+    print("roomDict: ",type(roomDict))
+    if not isinstance(roomDict,dict):
+        return getResponseReturn(404)
+    res = makeResponseScheme(resStatus=200, msg="查询房源成功",data=roomDict)
     return res
 
 
-@rooms_mod.route("/hh/room_get", methods=["GET"])
-def rooms_get():
-    dict1 = {1:"hello,hh"}
-    json1 = json.dumps(dict1, ensure_ascii=False)
-    return json1
+# 删除房源
+@rooms_mod.route("/hh/room_delete", methods=["POST"])
+def rooms_delete():
+    param = request.json
+    roomId = param["roomId"]
+    resCode = deleteRoomById(roomId)
+    if resCode == 200:
+        res = makeResponseScheme(resStatus=200, msg="删除房源成功")
+    elif resCode == 500:
+        res = makeResponseScheme(resStatus=500, msg="删除房源失败")
+    else:
+        res = makeResponseScheme(resStatus=404, msg="所删除房源查找失败")
+    return res
 
 
+# 更新房源
 @rooms_mod.route("/hh/room_update", methods=["POST"])
 def rooms_update():
-    rr = getUsers()
-    print(rr)
     param = request.json
     print(type(param))
     print("username: ",param["username"])
     hh = "search for yourself " + param["username"]
     return hh
-
-
-@rooms_mod.route("/hh/room_delete", methods=["POST"])
-def rooms_delete():
-    pass
-
-
