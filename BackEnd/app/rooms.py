@@ -38,3 +38,8 @@ def rooms_update():
     return hh
 
 
+@rooms_mod.route("/hh/room_delete", methods=["POST"])
+def rooms_delete():
+    pass
+
+

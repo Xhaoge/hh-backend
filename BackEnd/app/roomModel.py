@@ -45,6 +45,7 @@ def addRoom(newRoom):
         db.session.commit()
     except Exception as e:
         return e
+    
     return "success"
 
 # class Picture(db.Model):
