@@ -61,8 +61,16 @@ def getRoomById(roomId):
     roomRecord = Room.query.filter_by(id=roomId).first()
     if not roomRecord:
         return 404
+    return roomRecord
+
+
+def getRoomByIdResponse(roomId):
+    roomRecord = Room.query.filter_by(id=roomId).first()
+    if not roomRecord:
+        return 404
     resp = makeOneRoomToDict(roomRecord)
     return resp
+
 
 def deleteRoomById(roomId):
     roomDelete = Room.query.filter_by(id=roomId).first()
@@ -122,3 +130,55 @@ def makeAllRoomToList(r):
     roomDict["supporting"] = r.supporting
     return roomDict
 
+
+def roomUpdate(updateParam):
+    upRoom = getRoomById(updateParam["roomId"])
+    if not upRoom:
+        return 404
+    try:
+        upKey = updateParam.keys()
+        if "creatorId" in upKey:
+            upRoom.creatorId = updateParam["creatorId"]
+        if "status" in upKey:
+            upRoom.status = updateParam["status"]
+        if "title" in upKey:
+            upRoom.title = updateParam["title"]
+        if "picIdList" in upKey:
+            upRoom.picIdList = str(updateParam["picIdList"])
+        if "position" in upKey:
+            upRoom.position = str(updateParam["position"])
+        if "address" in upKey:
+            upRoom.address = updateParam["address"]
+        if "roomType" in upKey:
+            upRoom.roomType = str(updateParam["roomType"])
+
+        # if "isElevator" in upKey:
+        #     upRoom["isElevator"] = updateParam["isElevator"]
+
+        if "price" in upKey:
+            upRoom.price = updateParam["price"]
+        if "nearSubway" in upKey:
+            upRoom.nearSubway = updateParam["nearSubway"]
+        if "payType" in upKey:
+            upRoom.payType = updateParam["payType"]
+        if "area" in upKey:
+            upRoom.area = updateParam["area"]
+        if "floor" in upKey:
+            upRoom.floor = updateParam["floor"]
+        if "plot" in upKey:
+            upRoom.plot = updateParam["plot"]
+        if "supporting" in upKey:
+            upRoom.supporting = str(updateParam["supporting"])
+        if "contactPhone" in upKey:
+            upRoom.contactPhone = updateParam["contactPhone"]
+        if "contactWx" in upKey:
+            upRoom.contactWx = updateParam["contactWx"]
+        if "description" in upKey:
+            upRoom.description = updateParam["description"]
+        upRoom.releaseTime = str(time.strftime('%Y-%m-%d %H:%M:%S'))
+        db.session.commit()
+    except Exception:
+        return 500
+    return 200
+
+ 

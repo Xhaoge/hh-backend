@@ -63,7 +63,7 @@ def roomAddParamHandle(d):
 def rooms_get():
     param = request.json
     roomId = param["roomId"]
-    roomDict = getRoomById(roomId)
+    roomDict = getRoomByIdResponse(roomId)
     print("roomDict: ",type(roomDict))
     if not isinstance(roomDict,dict):
         return getResponseReturn(404)
@@ -90,7 +90,11 @@ def rooms_delete():
 @rooms_mod.route("/hh/room_update", methods=["POST"])
 def rooms_update():
     param = request.json
-    print(type(param))
-    print("username: ",param["username"])
-    hh = "search for yourself " + param["username"]
-    return hh
+    resCode = roomUpdate(param)
+    if resCode == 200:
+        res = makeResponseScheme(resStatus=200, msg="更新数据成功")
+    elif resCode == 404:
+        res = makeResponseScheme(resStatus=404, msg="所更新房源查找失败")
+    else:
+        res = makeResponseScheme(resStatus=500, msg="内部处理数据错误")
+    return res

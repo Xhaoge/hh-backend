@@ -17,7 +17,7 @@ def pic_add():
         # 获取图片名
         file_name = file_add.filename
         print("file_name: ",file_name)
-    except Exception as e:
+    except Exception:
         return getResponseReturn(202)
     # 文件保存地址；
     file_path = app.config.get("PICS_STORAGE_ADDRESS")
@@ -37,16 +37,10 @@ def pic_add():
     return json.dumps(resultRes, ensure_ascii=False)
 
 
-@pic_handle.route("/hh/pic_del", methods=["POST"])
+@pic_handle.route("/hh/pic_delete", methods=["POST"])
 def pic_del():
     param = request.json
     print(type(param))
     print("username: ",param["username"])
     hh = "search for yourself " + param["username"]
     return hh
-
-
-@pic_handle.route("/hh/pic_update", methods=["POST"])
-def pic_upd():
-    param = request.json
-    return param
