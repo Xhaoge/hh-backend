@@ -1,47 +1,57 @@
 # -*- coding: utf-8 -*-
 import os
+import shutil
 import json
 from flask import Blueprint, request
-from .utils import getRandomStr, getResponseReturn
+from .utils import getRandomStr, makeResponseScheme
 from . import app
 # from . import db
 
 pic_handle = Blueprint('pictures',__name__)
 
 
+# 添加图片
 @pic_handle.route("/hh/pic_add", methods=["POST"])
 def pic_add():
-    data = {}
     try:
         # 获取图片
-        file_add = request.files["file"]
+        fileAdd = request.files["file"]
         # 获取图片名
-        file_name = file_add.filename
-        print("file_name: ",file_name)
+        fileName = fileAdd.filename
+        print("上传图片的file_name: ",fileName)
     except Exception:
-        return getResponseReturn(202)
+        res = makeResponseScheme(resStatus=202)
     # 文件保存地址；
-    file_path = app.config.get("PICS_STORAGE_ADDRESS")
+    filePath = app.config.get("PICS_STORAGE_ADDRESS")
     traceId = getRandomStr(4) + "-" + getRandomStr(4) + ".jpg"
-    if file_add:
+    if fileAdd:
         # 地址拼接
-        if not os.path.exists(file_path):
-            os.makedirs(file_path)
-        file_paths = os.path.join(file_path, traceId)
-        print("file_paths: ",file_paths)
+        if not os.path.exists(filePath):
+            os.makedirs(filePath)
+        fileFullPath = os.path.join(filePath, traceId)
+        print("fileFullPath: ",fileFullPath)
         # 保存接收的图片到桌面
-        file_add.save(file_paths)
-    data["picId"] = traceId
-    data["fileHost"] = file_path
-    resultRes = getResponseReturn(200)
-    resultRes["data"] = data
-    return json.dumps(resultRes, ensure_ascii=False)
+        fileAdd.save(fileFullPath)
+    res = makeResponseScheme(resStatus=200, msg="上传图片成功", data={"picId":traceId, "fileHOst":filePath})
+    return res
 
 
+# 删除图片
 @pic_handle.route("/hh/pic_delete", methods=["POST"])
 def pic_del():
     param = request.json
-    print(type(param))
-    print("username: ",param["username"])
-    hh = "search for yourself " + param["username"]
-    return hh
+    fileName = param['picId']
+    filePath = param['fileHost']
+    deleteFile = filePath + "/" + fileName
+    print("deleteFile: ", deleteFile)
+    try:
+        if (os.path.exists(deleteFile)):
+            os.remove(deleteFile)
+    except Exception:
+        res = makeResponseScheme(resStatus=404, msg="图片无法查找")
+    # for f in os.listdir(fileDelPath):
+    #     fullFile = os.path.join(fileDelPath, f)
+    #     newFullFile = os.path.join("D:/static/hh/removedPhotos",f)
+    #     shutil.copy(fullFile, newFullFile)
+    res = makeResponseScheme(resStatus=200, msg="图片删除成功")
+    return res
