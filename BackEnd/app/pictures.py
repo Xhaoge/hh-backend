@@ -8,6 +8,7 @@ from . import app
 
 pic_handle = Blueprint('pictures',__name__)
 
+
 @pic_handle.route("/hh/pic_add", methods=["POST"])
 def pic_add():
     data = {}

@@ -92,7 +92,7 @@ def rooms_update():
     param = request.json
     resCode = roomUpdate(param)
     if resCode == 200:
-        res = makeResponseScheme(resStatus=200, msg="更新数据成功")
+        res = makeResponseScheme(resStatus=200, msg="更新房源数据成功")
     elif resCode == 404:
         res = makeResponseScheme(resStatus=404, msg="所更新房源查找失败")
     else:

@@ -2,8 +2,8 @@
 
 # from app import app
 from app import db
-# from datetime import datetime
 import time
+
 
 class Room(db.Model):
     """房源"""

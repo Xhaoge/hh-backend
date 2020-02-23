@@ -26,4 +26,4 @@ PORT = 8080
 
 
 # 配置图片存放地址
-PICS_STORAGE_ADDRESS = r'E:/program/static/hh/photos'
+PICS_STORAGE_ADDRESS = r'D:/static/hh/photos'
