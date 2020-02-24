@@ -41,7 +41,7 @@ def roomAddParamHandle(d):
         roomNew.position = str(d["position"])
         roomNew.address = d["address"]
         roomNew.roomType = str(d["roomType"])
-        roomNew.isElevator = True
+        roomNew.isElevator = True if d["isElevator"] == 1 else False
         roomNew.price = d["price"]
         roomNew.nearSubway = d["nearSubway"]
         roomNew.payType = d["payType"]
